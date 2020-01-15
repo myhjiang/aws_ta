@@ -1,9 +1,15 @@
 import boto3
 import time
+import argparse
 
+parser = argparse.ArgumentParser(description='Create Amazon Lex bot with intent text files')
+parser.add_argument('bucket', metavar='b', type=str, help='bucket name where the intents are stored')
+args = parser.parse_args()
+input_bucket = args.bucket
 
+'''sample input
 input_bucket = 'testprocessta'
-zip_key = ''
+'''
 
 # client needed: s3 and Lex modelling
 s3_client = boto3.client('s3')
