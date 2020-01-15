@@ -8,6 +8,8 @@ An almost automated workflow to process think-aloud data powered by Amazon Trans
 
 ## Prepare the data
 
+## Some AWS configuration
+
 ## Run
 
 ## Human intervention
