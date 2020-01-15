@@ -69,7 +69,7 @@ s3_list = s3_client.list_objects_v2(
 for file in s3_list['Contents']:
     filename = file['Key']
     # invoke lambda
-    if filename.endswith('.csv'):
+    if filename.endswith('.tsv'):
         print(f"Processing file {filename}...")
         payload = {'bucket': input_bucket, 'file_key': filename, 'output_file': 'coded_'+filename,
                    'bot': {'name': bot_name, 'alias': bot_alias}}
