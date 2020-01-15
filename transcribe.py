@@ -145,6 +145,8 @@ vocab_file = ()
 media_suffix = ('mp3', 'mp4', 'wav', 'flac')
 for file in s3_list['Contents']:
     filename = file['Key']
+    if filename.startswith('intents/'):  # skip the intent folder
+        continue
     url = 'https://' + input_bucket + '.amazonaws.com/' + filename
     uri = 'https://s3.' + region + '.amazonaws.com/' + input_bucket + '/' + filename
     if filename.endswith(media_suffix):
