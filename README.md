@@ -54,6 +54,8 @@ This can be done via AWS CLI or from the IAM console.
 **Note**: `transcribe.py` will create a temporary data-access-role that allow Transcribe to read and write into your S3 bucket when jobs are queued. This role is attached with [these policies provided by Amazon](https://docs.aws.amazon.com/transcribe/latest/dg/job-queuing.html). This role will be deleted as the script finishes. 
 
 ## Run
+**Make sure the**  `lambda_function` **folder is in the same directory as the scripts before running the scripts!**  
+
 ### transcribe.py
 **Arguments:** 
 - InputBucket (in): name of the bucket where you store your custom vocabulary and audio files 
