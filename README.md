@@ -10,7 +10,7 @@ The simple workflow: transcription -> segmentation -> encoding
 - [Boto3](https://boto3.amazonaws.com/v1/documentation/api/latest/guide/quickstart.html)    
 
 ## Languages
-AWS Transcribe supports multiple languages. But Lex only supports English. 
+AWS Transcribe supports multiple languages, but Lex only supports English. Thus this whole workflow onnly works for English (US), while the transcription part can be used for other languages supported by Amazon. 
 
 ## Prepare the data
 All inputs files should be stored in an S3 with the following structure:   
