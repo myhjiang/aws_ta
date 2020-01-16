@@ -3,9 +3,11 @@ import time
 import argparse
 
 parser = argparse.ArgumentParser(description='Create Amazon Lex bot with intent text files')
-parser.add_argument('bucket', metavar='b', type=str, help='bucket name where the intents are stored')
+parser.add_argument('Bucket', metavar='b', type=str, help='bucket name where the intents are stored')
+parse.add_argument('BotName', metvar='n', type=str, help="Name of the bot to be built")
 args = parser.parse_args()
-input_bucket = args.bucket
+input_bucket = args.Bucket
+bot_name = args.BotName
 
 '''sample input
 input_bucket = 'testprocessta'

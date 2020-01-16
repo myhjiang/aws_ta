@@ -1,10 +1,11 @@
 import boto3
 import time
 import json
+import argparse
 
 
 parser = argparse.ArgumentParser(description='Batch encoding with Lex bot')
-parser.add_argument('InputBucket', metavar='in', type=str, help='s3 bucket name with the input audio files')
+parser.add_argument('InputBucket', metavar='in', type=str, help='s3 bucket name with the transcript segments')
 parser.add_argument('Role', metavar='rl', type=str, help='IAM role name that has the access')
 parser.add_argument('BotName', metavar='bn', type=str, help='Name of the Lex bot')
 parser.add_argument('BotAlias', metavar='ba', type=str, help='Alias of the Lex bot')
@@ -57,7 +58,6 @@ while True:
     else:
         break
 print('Lambda function created, ready to code sentences.')
-# quit()  # todo: remove it at the end
 
 # get objects from S3, loop, call Lambda
 # otherwise Lambda might timeout if all objects are processed in one call
@@ -66,6 +66,7 @@ s3_list = s3_client.list_objects_v2(
     Delimiter=',',
     EncodingType='url'
 )
+print('Start to code sentences...')
 for file in s3_list['Contents']:
     filename = file['Key']
     # invoke lambda
