@@ -59,7 +59,7 @@ This can be done via AWS CLI or from the IAM console.
 - InputBucket (in): name of the bucket where you store your custom vocabulary and audio files 
 - OutputBucket (out): name of the bucket to store transcripts, can be the same with InputBucket  
 - Region (rg): the region of your CLI,  **has to be the same with the region of the buckets!**
-- Role (rl): the IAM role that has the accesses mentioned above. 
+- Role (rl): the IAM role that has [the accesses mentioned above](https://github.com/myhjiang/aws_ta/blob/master/README.md#some-aws-access-configuration). 
 
 For example: `$ python transcribe.py bucket1 bucket2 us-west-2, FullAccessRole `
 
