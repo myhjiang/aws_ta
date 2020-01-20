@@ -16,7 +16,7 @@ role_name = args.Role
 bot_name = args.BotName
 bot_alias = args.BotAlias
 
-''''example inputs
+'''example inputs
 input_bucket = ''
 bot_name = ''
 bot_alias = ''
@@ -67,11 +67,13 @@ s3_list = s3_client.list_objects_v2(
     EncodingType='url'
 )
 print('Start to code sentences...')
+job_list = []
 for file in s3_list['Contents']:
     filename = file['Key']
     # invoke lambda
     if filename.endswith('.tsv'):
         print(f"Processing file {filename}...")
+        job_list.append(filename)
         payload = {'bucket': input_bucket, 'file_key': filename, 'output_file': 'coded_'+filename,
                    'bot': {'name': bot_name, 'alias': bot_alias}}
         invoke_response = lambda_client.invoke(
@@ -82,4 +84,21 @@ for file in s3_list['Contents']:
     else:
         continue
 
+# check status
+print('checking coding status... update every 60 seconds...')
+while True:
+    finished_jobs = s3_client.list_objects_v2(
+    Bucket=input_bucket,
+    Delimiter=',',
+    EncodingType='url',
+    Prefix='coded_'
+    )
+    finished = len(finished_jobs['Contents'])
+    print(f"{finished} out of {len(job_list)} files have finished coding.")
+    if finished == len(job_list):
+        break
+    time.sleep(60)
+
 print('Coding completed.')
+
+# finished
