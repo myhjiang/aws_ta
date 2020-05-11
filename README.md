@@ -3,7 +3,7 @@ An almost automated workflow to process think-aloud data powered by Amazon Web S
 
 The simple workflow: transcription -> segmentation -> encoding
 
-![](F:\SchoolDayTime\writing_parts\pics and stuff\ta_workflow (1).png)
+[workflow](https://github.com/myhjiang/aws_ta/blob/master/pic/ta_workflow%20(1).png)
 
 This is a part of MSc. Thesis *A Solution to Analyze Mobile Eye-tracking Data for GI User Research* by Yuhao (Markie) Jiang, ITC-University of Twente, Enschede, The Netherlands, June 2020.
 
