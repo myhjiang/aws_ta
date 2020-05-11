@@ -1,19 +1,23 @@
 # Simple think-aloud data processing with Amazon Web Services
 An almost automated workflow to process think-aloud data powered by Amazon Web Services (S3, Lambda, Transcribe, Lex).
 
-
 The simple workflow: transcription -> segmentation -> encoding
 
+![](F:\SchoolDayTime\writing_parts\pics and stuff\ta_workflow (1).png)
+
+This is a part of MSc. Thesis *A Solution to Analyze Mobile Eye-tracking Data for GI User Research* by Yuhao (Markie) Jiang, ITC-University of Twente, Enschede, The Netherlands, June 2020.
+
 ## Requirements
+
 - AWS account
 - Configured AWS CLI 
 - [Boto3](https://boto3.amazonaws.com/v1/documentation/api/latest/guide/quickstart.html)    
 
 ## Languages
-AWS Transcribe supports multiple languages, but Lex only supports English. Thus this whole workflow onnly works for English (US), while the transcription part can be used for other languages supported by Amazon. 
+AWS Transcribe supports multiple languages, but Lex only supports English. Thus this whole workflow only works for English (US), while the transcription part can be used for other languages supported by Amazon. 
 
 ## Prepare the data
-All inputs files should be stored in an S3 with the following structure:   
+All inputs files should be stored in an S3 bucket with the following structure:   
 ```
 S3 Bucket 
 ├── intents  
@@ -24,16 +28,18 @@ S3 Bucket
 ├── think_aloud_audio.mp3  
 ├── another_audio.mp3  
 ├── ... 
-```  
+```
 `custom_vocabulary.txt` should be in the [Table Format](https://docs.aws.amazon.com/transcribe/latest/dg/how-vocabulary.html#create-vocabulary-table)  
 
 Audio files can be: `.mp3, .mp4, .wav, .flac` 
 
 `intents` contains the `.txt` files  
+
 **Note:** Intents don't have to be in the same buckets as the audio and vocabulary files, but they should be all stored under the sub-folder of `intents`  
 Intents should follow the naming of `code_name.txt`, where `code` is a simple code you want to use for your intent, and `name` is the name of the intent. For example, `I_mapinteraction.txt` represents an intent called "mapinteraction" with the code I.   
 The intent file should contain sample utterances separated by line break. 
 For example, the `I_mapinteraction.txt` has the following content:  
+
 ```
 zoom in.
 I'll zoom out a little bit more.
@@ -41,10 +47,11 @@ I'm click the button to...
 ...
 ```
 
- 
+
 ## Some AWS access configuration
 You will need your AWS region name to run `transcribe.py`  
 You will also need a IAM role that has the following policies attached:
+
 - AWSLambdaExecute
 - AWSLambdaBasicExecutionRole
 - AmazonLexRunBotsOnly  
